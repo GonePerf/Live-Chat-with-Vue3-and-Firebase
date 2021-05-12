@@ -1,4 +1,5 @@
-# live-chat
+# Live chat 
+## Vue3, Firebase - Realtime Database, Autenhication
 
 ## Project setup
 ```
@@ -17,3 +18,5 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# Thanks to TheNetNinja for a very good course :)
