@@ -1,5 +1,8 @@
 # Live chat 
-## Vue3, Firebase - Realtime Database, Autenhication
+## Vue3, Firebase - Realtime Database, Authentication 
+
+# Preview: https://udemy-course-7f9fc.web.app/
+
 
 ## Project setup
 ```
