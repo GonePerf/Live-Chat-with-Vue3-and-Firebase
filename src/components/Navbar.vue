@@ -1,7 +1,6 @@
 <template>
   <nav v-if="user">
       <div>
-          <p><b>&copy; GonePerf & TheNetNinja</b></p>
           <p>Hey there {{ user.displayName }}</p>
           <p class="email">Currently logged in as {{ user.email }}</p>
       </div>

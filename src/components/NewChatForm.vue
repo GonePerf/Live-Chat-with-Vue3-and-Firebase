@@ -1,11 +1,20 @@
 <template>
   <form>
-      <textarea 
-        placeholder="Type a message and hit enter to send..."
-        v-model="message"
-        @keypress.enter.prevent="handleSubmit"
-        @keypress="checkProfanity">  
-      </textarea>
+      <div class="mess">
+        <textarea 
+            placeholder="Type a message and hit enter to send..."
+            v-model="message"
+            @keypress.enter.prevent="handleSubmit"
+            @keypress="checkProfanity">  
+        </textarea>
+        <div>
+            <span class="material-icons" @click.prevent="handleSubmit">
+                send
+            </span>
+        </div>
+      </div>
+      
+      
       <div class="error">{{ error }}</div>
   </form>
 </template>
@@ -28,17 +37,19 @@ export default {
         }
         
         const handleSubmit = async () => {
-            const { checkedMessage } = hideProfanity(message.value)
-            message.value = checkedMessage
-            const chat = {
-                name: user.value.displayName,
-                message: message.value,
-                createdAt: timestamp()
-            }
-            await addDoc(chat)
-            if(!error.value){
-                message.value = ''
-            }
+            if(message.value) {
+                const { checkedMessage } = hideProfanity(message.value)
+                message.value = checkedMessage
+                const chat = {
+                    name: user.value.displayName,
+                    message: message.value,
+                    createdAt: timestamp()
+                }
+                await addDoc(chat)
+                if(!error.value){
+                    message.value = ''
+                }
+            } 
         }
         
         return { message, handleSubmit, error, checkProfanity }
@@ -47,12 +58,27 @@ export default {
 </script>
 
 <style scoped>
+    .mess {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+    span {
+        color: rgb(86, 86, 255);
+        cursor: pointer;
+        padding: 16px;
+        margin-left: 5px;
+    }
     form {
         margin: 10px;
     }
     textarea {
-        width: 100%;
-        max-width: 100%;
+        width: 93%;
+        font-size: 125%;
+        max-width: 93%;
+        min-width: 93%;
+        min-height: 50px;
+        max-height: 100px;
         margin-bottom: 6px;
         padding: 10px;
         box-sizing: border-box;

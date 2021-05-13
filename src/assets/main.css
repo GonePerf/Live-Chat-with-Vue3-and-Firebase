@@ -1,5 +1,5 @@
 body {
-    background-color: #e3e1ff;
+    background-color: #ddd;
     color: #444;
 }
 .container {
@@ -7,7 +7,7 @@ body {
     max-width: 960px;
     margin: 80px auto;
     border-radius: 20px;
-    box-shadow: 2px 4px 6px rgba(28, 6, 49, 0.1);
+    box-shadow: 3px 6px 9px rgba(28, 6, 49, 0.1);
     background: white;
 }
 .error {
@@ -16,10 +16,17 @@ body {
 }
 button {
     text-decoration: none;
-    background: #5ae4ca;
+    box-shadow: 2px 4px 6px rgba(28, 6, 49, 0.1);
+    background: #e48d5a;
     color: white;
     font-weight: bold;
     border: 0;
     border-radius: 20px;
     padding: 10px 20px;
+    transition: .2s;
+}
+button:hover {
+    transition: .2s;
+    cursor: pointer;
+    transform: scale(1.03);
 }
