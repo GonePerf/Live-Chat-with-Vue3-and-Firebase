@@ -3,7 +3,8 @@
       <textarea 
         placeholder="Type a message and hit enter to send..."
         v-model="message"
-        @keypress.enter.prevent="handleSubmit">  
+        @keypress.enter.prevent="handleSubmit"
+        @keypress="checkProfanity">  
       </textarea>
       <div class="error">{{ error }}</div>
   </form>
@@ -12,6 +13,7 @@
 <script>
 import { ref } from '@vue/reactivity'
 import getUser from '../composables/getUser'
+import hideProfanity from '../composables/hideProfanity'
 import useCollection from '../composables/useCollection'
 import { timestamp } from '../firebase/config'
 export default {
@@ -20,7 +22,14 @@ export default {
         const { user } = getUser()
         const { addDoc, error } = useCollection('messages')
         
+        const checkProfanity = () => {
+            const { checkedMessage } = hideProfanity(message.value)
+            message.value = checkedMessage
+        }
+        
         const handleSubmit = async () => {
+            const { checkedMessage } = hideProfanity(message.value)
+            message.value = checkedMessage
             const chat = {
                 name: user.value.displayName,
                 message: message.value,
@@ -32,7 +41,7 @@ export default {
             }
         }
         
-        return { message, handleSubmit, error }
+        return { message, handleSubmit, error, checkProfanity }
     }
 }
 </script>
